@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cast.movie.dto.MovieDTO;
+import br.com.cast.movie.interceptor.Protegido;
 import br.com.cast.movie.service.FilmeService;
 
 @RestController
@@ -18,11 +19,13 @@ public class FilmeAPI {
 	@Autowired
 	private FilmeService filmeService;
 	
+	@Protegido
 	@RequestMapping(path = "/titulo/{titulo}", method = RequestMethod.GET)
 	public List<MovieDTO> buscarPorTitulo(@PathVariable("titulo") String titulo) {
 		return filmeService.buscarPorTitulo(titulo);
 	}
 	
+	@Protegido
 	@RequestMapping(path = "/id/{id}", method = RequestMethod.GET)
 	public MovieDTO buscarPorId(@PathVariable("id") String id) {
 		return filmeService.buscarPorId(id);

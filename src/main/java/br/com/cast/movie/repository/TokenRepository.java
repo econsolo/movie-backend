@@ -16,4 +16,8 @@ public class TokenRepository {
 	public void inserir(Token token) {
 		em.persist(token);
 	}
+
+	public Token buscarPorId(String token) {
+		return em.find(Token.class, token);
+	}
 }
