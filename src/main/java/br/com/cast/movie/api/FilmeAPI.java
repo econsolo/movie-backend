@@ -18,9 +18,14 @@ public class FilmeAPI {
 	@Autowired
 	private FilmeService filmeService;
 	
-	@RequestMapping(path = "/titulo/{titulo}", method = RequestMethod.GET)
-	public List<MovieDTO> buscarPorTitulo(@PathVariable("titulo") String titulo) {
-		return filmeService.buscarPorTitulo(titulo);
+	@RequestMapping(path = "/titulo-local/{titulo}", method = RequestMethod.GET)
+	public List<MovieDTO> buscarPorTituloLocal(@PathVariable("titulo") String titulo) {
+		return filmeService.buscarPorTituloLocal(titulo);
+	}
+
+	@RequestMapping(path = "/titulo-nuvem/{titulo}", method = RequestMethod.GET)
+	public List<MovieDTO> buscarPorTituloNaNuvem(@PathVariable("titulo") String titulo) {
+		return filmeService.buscarPorTituloNaNuvem(titulo);
 	}
 	
 	@RequestMapping(path = "/id/{id}", method = RequestMethod.GET)

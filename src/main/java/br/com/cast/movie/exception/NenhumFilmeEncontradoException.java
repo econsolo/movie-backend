@@ -1,0 +1,13 @@
+package br.com.cast.movie.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(code = HttpStatus.NOT_FOUND)
+public class NenhumFilmeEncontradoException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+
+	public NenhumFilmeEncontradoException() {
+		super("Nenhum filme encontrado!");
+	}
+}
