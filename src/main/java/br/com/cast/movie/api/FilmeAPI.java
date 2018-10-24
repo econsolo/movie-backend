@@ -24,6 +24,12 @@ public class FilmeAPI {
 	public List<MovieDTO> buscarPorTituloLocal(@PathVariable("titulo") String titulo) {
 		return filmeService.buscarPorTituloLocal(titulo);
 	}
+	
+	@Protegido
+	@RequestMapping(path = "/titulo-local/", method = RequestMethod.GET)
+	public List<MovieDTO> buscarPorTituloLocal() {
+		return filmeService.buscarPorTituloLocal("");
+	}
 
 	@Protegido
 	@RequestMapping(path = "/titulo-nuvem/{titulo}", method = RequestMethod.GET)

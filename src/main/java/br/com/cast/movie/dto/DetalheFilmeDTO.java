@@ -13,7 +13,7 @@ public class DetalheFilmeDTO {
 	private String lancamento;
 
 	@JsonProperty("Year")
-	private Integer ano;
+	private String ano;
 
 	@JsonProperty("Runtime")
 	private String duracao;
@@ -171,14 +171,15 @@ public class DetalheFilmeDTO {
 		dto.setSinopse(df.getSinopse());
 		dto.setWebsite(df.getWebsite());
 		dto.setAno(df.getAno());
+		
 		return dto;
 	}
 
-	public Integer getAno() {
+	public String getAno() {
 		return ano;
 	}
 
-	public void setAno(Integer ano) {
+	public void setAno(String ano) {
 		this.ano = ano;
 	}
 

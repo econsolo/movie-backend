@@ -51,6 +51,10 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public String getSenha() {
+		return senha;
+	}
 
 	public static Usuario fromDTO(UsuarioDTO usuarioDTO) {
 		Usuario usuario = new Usuario();

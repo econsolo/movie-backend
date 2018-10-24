@@ -1,5 +1,6 @@
 package br.com.cast.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import br.com.cast.movie.entity.Usuario;
@@ -15,6 +16,7 @@ public class UsuarioDTO {
 	@JsonProperty("email")
 	private String email;
 
+	@JsonIgnore
 	@JsonProperty("senha")
 	private String senha;
 
@@ -58,6 +60,7 @@ public class UsuarioDTO {
 		dto.setId(usuario.getId());
 		dto.setEmail(usuario.getEmail());
 		dto.setUsuario(usuario.getUsuario());
+		dto.setSenha(usuario.getSenha());
 		return dto;
 	}
 

@@ -33,9 +33,12 @@ public class FilmeService {
 		if (filmes == null) {
 			throw new NenhumFilmeEncontradoException();
 		}
-		
+
 		for (MovieDTO movieDTO : filmes) {
 			if (!filmesLocal.stream().anyMatch(fl -> Objects.equals(fl.getId(), fl.getId()))) {
+				if (Objects.equals("N/A", movieDTO.getUrlImagem())) {
+					movieDTO.setUrlImagem("../../../assets/img/not-found.png");
+				}
 				filmeRepository.inserir(Filme.fromDTO(movieDTO));
 			}
 		}
@@ -47,11 +50,11 @@ public class FilmeService {
 		List<Filme> filmes = filmeRepository.buscarPorTitulo(titulo);
 		return filmes.stream().map(f -> MovieDTO.fromEntidade(f)).collect(Collectors.toList());
 	}
-	
+
 	@Transactional
 	public MovieDTO buscarPorIdNaNuvem(String id) {
 		Filme filme = filmeRepository.buscarPorId(id);
-		
+
 		if (filme.getDetalheFilme() == null) {
 			DetalheFilmeDTO detalheDTO = client.getDetalhes(filme.getId());
 			filme.setDetalheFilme(DetalheFilme.fromDTO(detalheDTO));
@@ -59,6 +62,5 @@ public class FilmeService {
 		}
 		return MovieDTO.fromEntidade(filme);
 	}
-
 
 }

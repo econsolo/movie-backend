@@ -13,12 +13,12 @@ public class MovieDTO {
 	private String titulo;
 
 	@JsonProperty("Year")
-	private Integer ano;
+	private String ano;
 	
 	@JsonProperty("Poster")
 	private String urlImagem;
 	
-	@JsonProperty("detail")
+	@JsonProperty("Detail")
 	private DetalheFilmeDTO detalheFilmeDTO;
 
 	public String getId() {
@@ -37,11 +37,11 @@ public class MovieDTO {
 		this.titulo = titulo;
 	}
 
-	public Integer getAno() {
+	public String getAno() {
 		return ano;
 	}
 
-	public void setAno(Integer ano) {
+	public void setAno(String ano) {
 		this.ano = ano;
 	}
 

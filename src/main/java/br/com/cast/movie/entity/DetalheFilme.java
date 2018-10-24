@@ -14,45 +14,45 @@ public class DetalheFilme {
 	@Id
 	private String id;
 
-	@Column(name = "lancamento", length = 50)
+	@Column(name = "lancamento", length = 500)
 	private String lancamento;
 
 	@Column(name = "ano")
-	private Integer ano;
+	private String ano;
 
-	@Column(name = "duracao", length = 50)
+	@Column(name = "duracao", length = 500)
 	private String duracao;
 
-	@Column(name = "genero", length = 50)
+	@Column(name = "genero", length = 500)
 	private String genero;
 
-	@Column(name = "diretor", length = 50)
+	@Column(name = "diretor", length = 2000)
 	private String diretor;
 
-	@Column(name = "escritor", length = 100)
+	@Column(name = "escritor", length = 2000)
 	private String escritor;
 
-	@Column(name = "atores", length = 500)
+	@Column(name = "atores", length = 2000)
 	private String atores;
 
-	@Column(name = "sinopse", length = 2000)
+	@Column(name = "sinopse", length = 8000)
 	private String sinopse;
 
-	@Column(name = "idioma", length = 50)
+	@Column(name = "idioma", length = 500)
 	private String idioma;
 
-	@Column(name = "pais", length = 50)
+	@Column(name = "pais", length = 500)
 	private String pais;
 
-	@Column(name = "premios", length = 200)
+	@Column(name = "premios", length = 2000)
 	private String premios;
 
-	@Column(name = "produtora", length = 100)
+	@Column(name = "produtora", length = 2000)
 	private String produtora;
 
-	@Column(name = "website", length = 200)
+	@Column(name = "website", length = 2000)
 	private String website;
-
+	
 	public String getId() {
 		return id;
 	}
@@ -179,11 +179,11 @@ public class DetalheFilme {
 		return df;
 	}
 
-	public Integer getAno() {
+	public String getAno() {
 		return ano;
 	}
 
-	public void setAno(Integer ano) {
+	public void setAno(String ano) {
 		this.ano = ano;
 	}
 

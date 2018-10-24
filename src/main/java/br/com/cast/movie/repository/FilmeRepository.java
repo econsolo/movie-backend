@@ -1,6 +1,9 @@
 package br.com.cast.movie.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,12 +23,22 @@ public class FilmeRepository {
 	public List<Filme> buscarPorTitulo(String titulo) {
 		StringBuilder hql = new StringBuilder();
 
+		Map<String, String> params = new HashMap<>();
+		
 		hql.append("SELECT f FROM ").append(Filme.class.getName()).append(" f ")
-				.append(" LEFT JOIN FETCH f.detalheFilme df ").append(" WHERE 1=1 ")
-				.append(" AND UPPER(f.titulo) LIKE :titulo ");
+				.append(" LEFT JOIN FETCH f.detalheFilme df ")
+				.append(" WHERE 1=1 ");
+		
+		if (titulo != null && !titulo.isEmpty()) {
+			hql.append(" AND UPPER(f.titulo) LIKE :titulo ");
+			params.put("titulo", "%" + titulo.toUpperCase() + "%");
+		}
 
 		Query query = em.createQuery(hql.toString());
-		query.setParameter("titulo", "%" + titulo.toUpperCase() + "%");
+		
+		for (Entry<String, String> param : params.entrySet()) {
+			query.setParameter(param.getKey(), param.getValue());
+		}
 
 		List<Filme> filmes = query.getResultList();
 
@@ -46,8 +59,7 @@ public class FilmeRepository {
 
 		hql.append("SELECT f FROM ").append(Filme.class.getName()).append(" f ")
 				.append(" LEFT JOIN FETCH f.detalheFilme df ")
-				.append(" WHERE 1=1 ")
-				.append(" AND f.id = :id ");
+				.append(" WHERE f.id = :id ");
 
 		Query query = em.createQuery(hql.toString());
 		query.setParameter("id", id);

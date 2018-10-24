@@ -1,5 +1,7 @@
 package br.com.cast.movie.entity;
 
+import java.util.Objects;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,8 +23,8 @@ public class Filme {
 	@Column(name = "titulo", length = 200, nullable = false)
 	private String titulo;
 
-	@Column(name = "ano", nullable = false)
-	private Integer ano;
+	@Column(name = "ano", length = 50, nullable = false)
+	private String ano;
 
 	@Column(name = "url_imagem", length = 500, nullable = true)
 	private String urlImagem;
@@ -47,11 +49,11 @@ public class Filme {
 		this.titulo = titulo;
 	}
 
-	public Integer getAno() {
+	public String getAno() {
 		return ano;
 	}
 
-	public void setAno(Integer ano) {
+	public void setAno(String ano) {
 		this.ano = ano;
 	}
 
@@ -76,7 +78,12 @@ public class Filme {
 		f.setId(movieDTO.getId());
 		f.setAno(movieDTO.getAno());
 		f.setTitulo(movieDTO.getTitulo());
-		f.setUrlImagem(movieDTO.getUrlImagem());
+		
+		if (Objects.equals("N/A", movieDTO.getUrlImagem())) {
+			f.setUrlImagem("../../../assets/img/not-found.png");
+		} else {
+			f.setUrlImagem(movieDTO.getUrlImagem());
+		}
 		
 		DetalheFilmeDTO detalheFilmeDTO = movieDTO.getDetalheFilmeDTO();
 		if (detalheFilmeDTO != null) {
