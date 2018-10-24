@@ -30,4 +30,9 @@ public class TokenService {
 		return TokenDTO.fromEntidade(token);
 	}
 
+	public TokenDTO buscarPorId(String token) {
+		Token t = tokenRepository.buscarPorId(token);
+		return TokenDTO.fromEntidade(t);
+	}
+
 }
