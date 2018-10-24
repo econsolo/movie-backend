@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.cast.movie.dto.DetalheFilmeDTO;
 import br.com.cast.movie.dto.MovieDTO;
 import br.com.cast.movie.dto.RetornoMovieAPI;
 
@@ -26,6 +27,16 @@ public class MovieClient {
 		ResponseEntity<RetornoMovieAPI> response = restTemplate.getForEntity(apiUrl, RetornoMovieAPI.class, filme, appId);
 		RetornoMovieAPI retorno = response.getBody();
 		return retorno.getRegistros();
+	}
+
+	public DetalheFilmeDTO getDetalhes(String imdbId) {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		String appId = env.getProperty("omdb.api_key");
+		String apiUrl = env.getProperty("omdb.api.id");
+		
+		ResponseEntity<DetalheFilmeDTO> response = restTemplate.getForEntity(apiUrl, DetalheFilmeDTO.class, imdbId, appId);
+		return response.getBody();
 	}
 
 	

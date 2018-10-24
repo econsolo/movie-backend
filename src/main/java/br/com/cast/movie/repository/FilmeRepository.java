@@ -15,25 +15,24 @@ public class FilmeRepository {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Filme> buscarPorTitulo(String titulo) {
 		StringBuilder hql = new StringBuilder();
-		
+
 		hql.append("SELECT f FROM ").append(Filme.class.getName()).append(" f ")
-		   .append(" LEFT JOIN FETCH f.detalheFilme df ")
-		   .append(" WHERE 1=1 ")
-		   .append(" AND UPPER(f.titulo) LIKE :titulo ");
-		
+				.append(" LEFT JOIN FETCH f.detalheFilme df ").append(" WHERE 1=1 ")
+				.append(" AND UPPER(f.titulo) LIKE :titulo ");
+
 		Query query = em.createQuery(hql.toString());
 		query.setParameter("titulo", "%" + titulo.toUpperCase() + "%");
-		
+
 		List<Filme> filmes = query.getResultList();
-		
+
 		return filmes;
-		
+
 	}
-	
+
 	public void inserir(Filme filme) {
 		em.persist(filme);
 	}
@@ -41,8 +40,23 @@ public class FilmeRepository {
 	public void alterar(Filme filme) {
 		em.merge(filme);
 	}
-	
+
 	public Filme buscarPorId(String id) {
-		return em.find(Filme.class, id);
+		StringBuilder hql = new StringBuilder();
+
+		hql.append("SELECT f FROM ").append(Filme.class.getName()).append(" f ")
+				.append(" LEFT JOIN FETCH f.detalheFilme df ")
+				.append(" WHERE 1=1 ")
+				.append(" AND f.id = :id ");
+
+		Query query = em.createQuery(hql.toString());
+		query.setParameter("id", id);
+
+		try {
+			return (Filme) query.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+
 	}
 }

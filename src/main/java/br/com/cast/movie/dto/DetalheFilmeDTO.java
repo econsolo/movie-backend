@@ -1,21 +1,51 @@
 package br.com.cast.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import br.com.cast.movie.entity.DetalheFilme;
 
 public class DetalheFilmeDTO {
 
+	@JsonProperty("imdbID")
 	private String id;
+
+	@JsonProperty("Released")
 	private String lancamento;
+
+	@JsonProperty("Year")
+	private Integer ano;
+
+	@JsonProperty("Runtime")
 	private String duracao;
+
+	@JsonProperty("Genre")
 	private String genero;
+
+	@JsonProperty("Director")
 	private String diretor;
+
+	@JsonProperty("Writer")
 	private String escritor;
+
+	@JsonProperty("Actors")
 	private String atores;
+
+	@JsonProperty("Plot")
 	private String sinopse;
+
+	@JsonProperty("Language")
 	private String idioma;
+
+	@JsonProperty("Country")
 	private String pais;
+
+	@JsonProperty("Awards")
 	private String premios;
+
+	@JsonProperty("Production")
 	private String produtora;
+
+	@JsonProperty("Website")
 	private String website;
 
 	public String getId() {
@@ -123,8 +153,9 @@ public class DetalheFilmeDTO {
 	}
 
 	public static DetalheFilmeDTO fromEntidade(DetalheFilme df) {
-		if (df == null) return null;
-		
+		if (df == null)
+			return null;
+
 		DetalheFilmeDTO dto = new DetalheFilmeDTO();
 		dto.setAtores(df.getAtores());
 		dto.setDiretor(df.getDiretor());
@@ -139,7 +170,16 @@ public class DetalheFilmeDTO {
 		dto.setProdutora(df.getProdutora());
 		dto.setSinopse(df.getSinopse());
 		dto.setWebsite(df.getWebsite());
+		dto.setAno(df.getAno());
 		return dto;
+	}
+
+	public Integer getAno() {
+		return ano;
+	}
+
+	public void setAno(Integer ano) {
+		this.ano = ano;
 	}
 
 }

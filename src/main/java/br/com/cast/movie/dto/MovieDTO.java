@@ -18,6 +18,7 @@ public class MovieDTO {
 	@JsonProperty("Poster")
 	private String urlImagem;
 	
+	@JsonProperty("detail")
 	private DetalheFilmeDTO detalheFilmeDTO;
 
 	public String getId() {

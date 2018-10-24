@@ -17,6 +17,9 @@ public class DetalheFilme {
 	@Column(name = "lancamento", length = 50)
 	private String lancamento;
 
+	@Column(name = "ano")
+	private Integer ano;
+
 	@Column(name = "duracao", length = 50)
 	private String duracao;
 
@@ -156,7 +159,7 @@ public class DetalheFilme {
 
 	public static DetalheFilme fromDTO(DetalheFilmeDTO dto) {
 		DetalheFilme df = new DetalheFilme();
-		
+
 		df.setId(dto.getId());
 		df.setAtores(dto.getAtores());
 		df.setDiretor(dto.getDiretor());
@@ -171,8 +174,17 @@ public class DetalheFilme {
 		df.setProdutora(dto.getProdutora());
 		df.setSinopse(dto.getSinopse());
 		df.setWebsite(dto.getWebsite());
+		df.setAno(dto.getAno());
 		
 		return df;
+	}
+
+	public Integer getAno() {
+		return ano;
+	}
+
+	public void setAno(Integer ano) {
+		this.ano = ano;
 	}
 
 }
