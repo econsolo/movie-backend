@@ -12,6 +12,7 @@ import br.com.cast.movie.dto.DetalheFilmeDTO;
 public class DetalheFilme {
 
 	@Id
+	@Column(name = "id", length = 36)
 	private String id;
 
 	@Column(name = "lancamento", length = 500)

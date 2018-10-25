@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import br.com.cast.movie.entity.Filme;
 
-public class MovieDTO {
+public class FilmeDTO {
 
 	@JsonProperty("imdbID")
 	private String id;
@@ -61,10 +61,10 @@ public class MovieDTO {
 		this.detalheFilmeDTO = detalheFilmeDTO;
 	}
 
-	public static MovieDTO fromEntidade(Filme f) {
+	public static FilmeDTO fromEntidade(Filme f) {
 		if (f == null) return null;
 		
-		MovieDTO dto = new MovieDTO();
+		FilmeDTO dto = new FilmeDTO();
 		dto.setId(f.getId());
 		dto.setAno(f.getAno());
 		dto.setTitulo(f.getTitulo());

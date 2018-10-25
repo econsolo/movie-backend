@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.cast.movie.dto.DetalheFilmeDTO;
-import br.com.cast.movie.dto.MovieDTO;
+import br.com.cast.movie.dto.FilmeDTO;
 import br.com.cast.movie.entity.DetalheFilme;
 import br.com.cast.movie.entity.Filme;
 import br.com.cast.movie.exception.NenhumFilmeEncontradoException;
@@ -25,16 +25,16 @@ public class FilmeService {
 	private FilmeRepository filmeRepository;
 
 	@Transactional
-	public List<MovieDTO> buscarPorTituloNaNuvem(String titulo) {
+	public List<FilmeDTO> buscarPorTituloNaNuvem(String titulo) {
 
-		List<MovieDTO> filmes = client.getMovieDTO(titulo);
-		List<MovieDTO> filmesLocal = this.buscarPorTituloLocal(titulo);
+		List<FilmeDTO> filmes = client.getMovieDTO(titulo);
+		List<FilmeDTO> filmesLocal = this.buscarPorTituloLocal(titulo);
 
 		if (filmes == null) {
 			throw new NenhumFilmeEncontradoException();
 		}
 
-		for (MovieDTO movieDTO : filmes) {
+		for (FilmeDTO movieDTO : filmes) {
 			if (!filmesLocal.stream().anyMatch(fl -> Objects.equals(fl.getId(), fl.getId()))) {
 				if (Objects.equals("N/A", movieDTO.getUrlImagem())) {
 					movieDTO.setUrlImagem("../../../assets/img/not-found.png");
@@ -46,13 +46,13 @@ public class FilmeService {
 		return filmes;
 	}
 
-	public List<MovieDTO> buscarPorTituloLocal(String titulo) {
+	public List<FilmeDTO> buscarPorTituloLocal(String titulo) {
 		List<Filme> filmes = filmeRepository.buscarPorTitulo(titulo);
-		return filmes.stream().map(f -> MovieDTO.fromEntidade(f)).collect(Collectors.toList());
+		return filmes.stream().map(f -> FilmeDTO.fromEntidade(f)).collect(Collectors.toList());
 	}
 
 	@Transactional
-	public MovieDTO buscarPorIdNaNuvem(String id) {
+	public FilmeDTO buscarPorIdNaNuvem(String id) {
 		Filme filme = filmeRepository.buscarPorId(id);
 
 		if (filme.getDetalheFilme() == null) {
@@ -60,7 +60,8 @@ public class FilmeService {
 			filme.setDetalheFilme(DetalheFilme.fromDTO(detalheDTO));
 			filmeRepository.alterar(filme);
 		}
-		return MovieDTO.fromEntidade(filme);
+		
+		return FilmeDTO.fromEntidade(filme);
 	}
 
 }

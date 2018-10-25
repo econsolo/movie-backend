@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.cast.movie.dto.DetalheFilmeDTO;
-import br.com.cast.movie.dto.MovieDTO;
+import br.com.cast.movie.dto.FilmeDTO;
 import br.com.cast.movie.dto.RetornoMovieAPI;
 
 @Component
@@ -18,7 +18,7 @@ public class MovieClient {
 	@Autowired
 	private Environment env;
 
-	public List<MovieDTO> getMovieDTO(String filme) {
+	public List<FilmeDTO> getMovieDTO(String filme) {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		String appId = env.getProperty("omdb.api_key");

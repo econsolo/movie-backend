@@ -60,7 +60,7 @@ public class UsuarioDTO {
 		dto.setId(usuario.getId());
 		dto.setEmail(usuario.getEmail());
 		dto.setUsuario(usuario.getUsuario());
-		dto.setSenha(usuario.getSenha());
+		//dto.setSenha(usuario.getSenha());
 		return dto;
 	}
 

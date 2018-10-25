@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.cast.movie.dto.DetalheFilmeDTO;
-import br.com.cast.movie.dto.MovieDTO;
+import br.com.cast.movie.dto.FilmeDTO;
 
 @Entity
 @Table(name = "filme", schema = "filme")
@@ -37,8 +37,9 @@ public class Filme {
 		return id;
 	}
 
-	public void setId(String id) {
+	public Filme setId(String id) {
 		this.id = id;
+		return this;
 	}
 
 	public String getTitulo() {
@@ -73,7 +74,9 @@ public class Filme {
 		this.detalheFilme = detalheFilme;
 	}
 
-	public static Filme fromDTO(MovieDTO movieDTO) {
+	public static Filme fromDTO(FilmeDTO movieDTO) {
+		if (movieDTO == null) return null;
+		
 		Filme f = new Filme();
 		f.setId(movieDTO.getId());
 		f.setAno(movieDTO.getAno());

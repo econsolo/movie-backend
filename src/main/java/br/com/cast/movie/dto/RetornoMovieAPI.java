@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class RetornoMovieAPI {
 
 	@JsonProperty("Search")
-	private List<MovieDTO> registros;
+	private List<FilmeDTO> registros;
 
-	public List<MovieDTO> getRegistros() {
+	public List<FilmeDTO> getRegistros() {
 		return registros;
 	}
 
-	public void setRegistros(List<MovieDTO> registros) {
+	public void setRegistros(List<FilmeDTO> registros) {
 		this.registros = registros;
 	}
 

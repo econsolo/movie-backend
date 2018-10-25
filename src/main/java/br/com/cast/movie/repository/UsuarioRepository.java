@@ -40,4 +40,8 @@ public class UsuarioRepository {
 		em.persist(usuario);
 	}
 
+	public Usuario buscarPorId(String id) {
+		return em.find(Usuario.class, id);
+	}
+
 }
