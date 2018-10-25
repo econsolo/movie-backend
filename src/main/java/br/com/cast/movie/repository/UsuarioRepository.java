@@ -44,4 +44,8 @@ public class UsuarioRepository {
 		return em.find(Usuario.class, id);
 	}
 
+	public void alterar(Usuario usuario) {
+		em.merge(usuario);
+	}
+
 }

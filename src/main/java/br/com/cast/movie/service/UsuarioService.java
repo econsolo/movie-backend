@@ -41,4 +41,23 @@ public class UsuarioService {
 		usuarioRepository.inserir(usuario);
 	}
 
+	@Transactional
+	public TokenDTO alterar(String id, UsuarioDTO usuarioDTO) {
+		
+		Usuario usuario = usuarioRepository.buscarPorId(id);
+		usuario.setEmail(usuarioDTO.getEmail());
+		usuario.setUsuario(usuarioDTO.getUsuario());
+		
+		usuarioRepository.alterar(usuario);
+		TokenDTO tokenDTO = tokenService.gerarToken(usuario);
+		
+		return tokenDTO;
+		
+	}
+	
+	@Transactional
+	public UsuarioDTO buscarPorId(String id) {
+		return UsuarioDTO.fromEntidade(usuarioRepository.buscarPorId(id));
+	}
+
 }
